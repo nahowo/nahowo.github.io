@@ -3,6 +3,20 @@
 		<div class="post-title">Category - <span id='category-name'></span></div>
 	</header>
 
+	<!-- <header class="siste-category">
+		<ul>
+			{% assign pages_list = site.pages %}
+			{% for node in pages_list %}
+				{% if node.title != null %}
+					{% if node.layout == "category" %}
+						<li><a class="category-link {% if page.url == node.url %} activate{% endif %}"
+						href="{{ site-baseurl }}{{ node.url }}">{{ node.title }}</a></li>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</header> -->
+
 	<div class="post-content">
 		{%- if site.posts.size > 0 -%}
 		<ul class="post-list">
