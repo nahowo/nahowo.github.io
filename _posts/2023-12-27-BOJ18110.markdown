@@ -1,0 +1,33 @@
+---
+layout: post
+title: "[BOJ] 18110: solved.ac"
+date: 2023-12-27 23:17
+category: PS
+---
+[18110: solved.ac](https://www.acmicpc.net/problem/18110).
+
+### 문제 설명
+solved.ac 문제의 난이도를 결정하기 위해, 사람들이 각자 낸 난이도의 30% 절사평균값을 구해보자. 
+절사평균 시 자르는 명수는 반올림하고, 평균값을 구할 때에도 반올림한 정수를 구한다. 
+
+### 나의 풀이
+```python
+import sys
+input=sys.stdin.readline
+
+n=int(input())
+difficulty=0
+if n>0:
+    rate=[]
+    for _ in range(n):
+        rate.append(int(input()))
+    rate.sort()
+    cut=int((n*15/100)+0.5)
+    if cut>0:
+        rate=rate[cut:-cut]
+    difficulty=int(sum(rate)/(n-(cut*2))+0.5)
+print(difficulty)
+```
+라이브러리를 사용해 반올림을 할 수도 있지만, 기존 값에 0.5를 더한 값에서 소수점만 버리면 사사오입 반올림을 할 수 있다. 
+또 하나 주의할 점은 cut이 0일 때 인덱싱을 [0:-0]으로 자르게 되면, 무조건 빈 문자열을 받게 된다. 그래서 cut이 0일 때는 예외로 만들어줘야 한다!
+시간복잡도는 정렬 부분에서 O(nlogn), 인덱싱에서 O(n)이 나올 것 같다. 
