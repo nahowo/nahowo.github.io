@@ -1,8 +1,0 @@
----
-layout: post
-title: test post
-date: 2023-12-24 21:18
-category: PS
----
-# 테스트 글
-안녕하세요!
