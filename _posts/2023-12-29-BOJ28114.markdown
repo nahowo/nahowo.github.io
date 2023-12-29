@@ -1,0 +1,41 @@
+---
+layout: post
+title: "[BOJ] 28114: 팀명 정하기"
+date: 2023-12-29 14:43
+category: PS
+---
+## 28114: 팀명 정하기
+[문제 링크](https://www.acmicpc.net/problem/28114)
+
+### 문제 설명
+간단한 규칙을 따라 팀명을 정하는 단순 구현 문제이다. 
+
+### 나의 풀이
+```python
+import sys
+input=sys.stdin.readline
+
+team=[]
+for _ in range(3):
+    team.append(list(input().rstrip().split()))
+
+key=[]
+for i in range(3):
+    key.append(int(team[i][1])%100)
+key.sort()
+name1=''.join(list(map(str,key)))
+
+key=[]
+for i in range(3):
+    key.append([team[i][2][0],int(team[i][0])])
+key.sort(key=lambda x:-x[1])
+for i in range(3):
+    key[i]=key[i][0]
+name2=''.join(key)
+
+print(name1)
+print(name2)
+```
+
+### 시간복잡도
+정렬이 들어가지만 팀별 참가자 명수가 3으로 고정이기 때문에, n=3일 때 시간복잡도는 O(nlogn)이지만 사실상 상수 시간을 가진다. 
