@@ -38,6 +38,7 @@ category_dir: category/
 tag_dir: tag/
 url: https://nahowo.github.io
 asset_url: /assets
+future: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
