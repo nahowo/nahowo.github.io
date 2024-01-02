@@ -1,0 +1,40 @@
+---
+layout: post
+title: "[BOJ] 1235: 학생 번호"
+date: 2024-1-2 11:26
+excerpt: "백준 문제풀이"
+category: PS
+toc: true
+toc_sticky: true
+---
+<!-- ## :  -->
+[문제 링크](https://www.acmicpc.net/problem/1235)
+
+### 문제 설명
+같은 길이의 학생 번호가 주어질 때, 중복이 일어나지 않게 앞에서부터 숫자를 줄여 나가려고 한다. 학생 번호를 최대한으로 줄였을 때의 번호 길이를 구해보자. 
+
+### 나의 풀이
+```python
+import sys
+input=sys.stdin.readline
+
+n=int(input())
+student=[]
+for _ in range(n):
+    student.append(input().rstrip())
+
+length=len(student[0])
+for i in range(length,-1,-1):
+    s=set()
+    for j in range(n):
+        s.add(student[j][i:length+1])
+    if len(s)==n:
+        k=length-i
+        break
+
+print(k)
+```
+for문을 뒤 자리부터 앞으로 오는 식으로 돌려서 인덱싱을 했다. 매번 집합을 초기화하고 인덱싱한 학생 번호를 집합에 넣는다. 마지막에 집합 길이와 n이 같다면 집합의 모든 요소가 고유하다는 의미이므로 for문을 중단하고 현재 길이를 출력한다. 
+
+### 시간복잡도
+이중 for문에서 100(문자열 길이)*o(n)이다. 
