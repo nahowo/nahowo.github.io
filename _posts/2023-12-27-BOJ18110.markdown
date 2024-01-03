@@ -3,6 +3,8 @@ layout: post
 title: "[BOJ] 18110: solved.ac"
 date: 2023-12-27 23:17
 category: PS
+toc: true
+toc_sticky: true
 ---
 ## 18110: solved.ac
 [문제 링크](https://www.acmicpc.net/problem/18110)
