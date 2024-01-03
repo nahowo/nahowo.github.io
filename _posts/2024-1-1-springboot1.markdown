@@ -3,6 +3,8 @@ layout: post
 title: "[자바 백엔드] 1장 스프링 부트 시작하기"
 date: 2024-1-1 22:40
 category: "Spring-Boot"
+toc: true
+toc_sticky: true
 ---
 ## 1장 스프링 부트 시작하기
 [자바 백엔드] *태그는 '코딩 자율학습 스프링 부트 3 자바 백엔드 개발 입문'을 읽으며 정리하는 내용이다.*
