@@ -65,7 +65,7 @@ src>main>resources>application.properties 파일에 `server.servlet.encoding.for
 
 위 과정을 거쳐 만든 페이지이다!
 
-![spring boot page](![2024-1-3-springboot2](https://github.com/nahowo/Algorithm-study/assets/96415630/e170dd9b-4eee-478e-bc7b-4e618f64e9d2))
+![2024-1-3-springboot2](https://github.com/nahowo/Algorithm-study/assets/96415630/bf2445e8-934f-4722-b337-6bec6c9371ac)
 
 ### 번외: 현재까지의 간단한 스프링부트 학습 후기
 
