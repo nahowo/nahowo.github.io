@@ -1,0 +1,50 @@
+---
+layout: post
+title: "[BOJ] 13420: 사칙연산"
+date: "2024-1-24 12:53"
+category: "PS"
+toc: true
+toc_sticky: true
+---
+<!-- ## :  -->
+### [BOJ] 13420: 사칙연산
+
+[문제 링크](https://www.acmicpc.net/problem/13420)
+
+### 문제 설명
+
+문자열로 사칙연산 계산과 그 결과가 주어질 때, 해당 연산이 올바른지 확인해 보자. 
+
+### 나의 풀이
+
+```python
+import sys
+input=sys.stdin.readline
+
+def func():
+    a,c,b,_,res=input().split()
+    a=int(a)
+    b=int(b)
+    res=int(res)
+    if c=='+':
+        if a+b==res:
+            return 'correct'
+    elif c=='-':
+        if a-b==res:
+            return 'correct'
+    elif c=='*':
+        if a*b==res:
+            return 'correct'
+    else:
+        if a/b==res:
+            return 'correct'
+    return 'wrong answer'
+
+t=int(input())
+for _ in range(t):
+    print(func())
+```
+
+### 시간복잡도
+
+O(t)이다.

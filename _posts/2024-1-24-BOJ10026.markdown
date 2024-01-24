@@ -1,0 +1,82 @@
+---
+layout: post
+title: "[BOJ] 10026: 적록색약"
+date: "2024-1-24 12:52"
+category: "PS"
+toc: true
+toc_sticky: true
+---
+### [BOJ] 10026: 적록색약
+
+[문제 링크](https://www.acmicpc.net/problem/10026)
+
+### 문제 설명
+
+그림은 색으로 구역을 구별하고, 빨간색, 초록색, 파란색으로 이루어져 있다. 적록색약인 사람은 빨간색과 초록색의 차이를 거의 구별하지 못한다. 그림이 주어질 때 적록색약이 아닌 사람이 보는 구역의 개수와 적록색약인 사람이 보는 구역의 개수를 구해보자. 
+
+### 나의 풀이
+
+```python
+import sys
+from collections import deque
+input=sys.stdin.readline
+
+n=int(input())
+paint_1=[]
+paint_2=[]
+for _ in range(n):
+    tmp=input().rstrip()
+    paint_1.append(tmp)
+    tmp2=''
+    for i in range(n):
+        if tmp[i]=='R':
+            tmp2+='G'
+        else:
+            tmp2+=tmp[i]
+    paint_2.append(tmp2)
+
+d=[[0,1],[0,-1],[1,0],[-1,0]]
+visited=[[False]*n for _ in range(n)]
+section_1=0
+section_2=0
+
+def func(sx,sy,p):
+    if visited[sx][sy]:
+        return False
+    q=deque([])
+    visited[sx][sy]=True
+    q.append([sx,sy])
+
+    while q:
+        x,y=q.popleft()
+        for dx,dy in d:
+            nx,ny=x+dx,y+dy
+            if 0<=nx<n and 0<=ny<n and not visited[nx][ny]:
+                if p[nx][ny]==p[x][y]:
+                    q.append([nx,ny])
+                    visited[nx][ny]=True
+    return True
+
+for i in range(n):
+    for j in range(n):
+        if func(i,j,paint_1):
+            section_1+=1
+
+visited=[[False]*n for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        if func(i,j,paint_2):
+            section_2+=1
+
+print(section_1,section_2)
+```
+
+BFS를 사용해 구역을 탐색한다. 우선 입력으로 그림 정보를 받는데, 그림1은 입력된 대로 받고 그림2는 ‘R’ 부분을 ‘G’로 변경해서 저장한다. 
+
+BFS는 이미 탐색을 완료한 위치이면 바로 False를 리턴한다. 아닐 경우 현재의 색깔과 같은 위치를 모두 True로 표기하고 True를 리턴한다. 
+
+n*n짜리 그림의 모든 위치에서 해당 함수를 돌린 다음 True가 나온 개수가 구역의 개수이다. 
+
+### 시간복잡도
+
+우선 그림의 모든 위치에서 함수를 돌리기 때문에 O(n*n), 함수를 돌릴 때에 그림을 전부 순회할 수 있으므로 O(n*n)이다. 따라서 전체 시간복잡도는 O(n^4)이다.

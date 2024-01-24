@@ -1,0 +1,59 @@
+---
+layout: post
+title: "[BOJ] 18113: 그르다 김가놈"
+date: "2024-1-24 12:48"
+category: "PS"
+toc: true
+toc_sticky: true
+---
+### [BOJ] 18113: 그르다 김가놈
+
+[문제 링크](https://www.acmicpc.net/problem/18113)
+
+### 문제 설명
+
+김밥 길이가 주어지면 규칙대로 꼬다리를 잘라낸다. 이렇게 손질한 김밥들을 일정한 길이 p로 잘라 김밥 조각을 최소 m개 만들려고 한다. 최대로 가능한 p를 구해보자. 
+
+### 나의 풀이
+
+```python
+import sys
+input=sys.stdin.readline
+
+def func():
+    n,k,m=map(int,input().split())
+    kimbap=[]
+    for _ in range(n):
+        tmp=int(input())
+        if tmp<2*k and tmp-k>0: # 김밥 길이가 2k보다 작은 경우
+            kimbap.append(tmp-k)
+        elif tmp>2*k: # 김밥 길이가 2k보다 큰 경우(2k인 경우는 어차피 0이 되므로 제외)
+            kimbap.append(tmp-2*k)
+
+    if len(kimbap)==0:
+        return -1
+    
+    start=1
+    end=max(kimbap)
+    p=-1
+    while start<=end:
+        mid=(start+end)//2
+        tmpsum=0
+        tmpsum=sum([i//mid for i in kimbap])
+        if tmpsum<m:
+            end=mid-1
+        else:
+            start=mid+1
+            p=mid
+    return p
+
+print(func())
+```
+
+우선 김밥을 규칙대로 전부 손질하고, 길이가 양수인 것들만 김밥으로 저장한다. 이렇게 만든 전체 김밥의 길이는 일정하기 때문에, 김밥의 개별 길이인 p를 늘리면 김밥 조각의 개수 m이 줄어드는 반비례 관계를 확인할 수 있다. 
+
+p의 범위를 1과 김밥 중 최대 길이로 잡고, 이분탐색을 사용하여 p의 최댓값을 구할 수 있다. 
+
+### 시간복잡도
+
+우선 김밥을 손질하는 과정에서 O(n)이 발생한다. 이분 탐색에서는 p의 범위(L)가 1~10^9이므로 O(log10^9), 손질된 김밥을 p 길이만큼 자르는 과정에서 O(n)이 발생한다. 따라서 전체 시간복잡도는 O(logL*n)이다.

@@ -1,0 +1,42 @@
+---
+layout: post
+title: "[BOJ] 17219: 비밀번호 찾기"
+date: "2024-1-24 12:51"
+category: "PS"
+toc: true
+toc_sticky: true
+---
+### [BOJ] 17219: 비밀번호 찾기
+
+[문제 링크](https://www.acmicpc.net/problem/17219)
+
+### 문제 설명
+
+사이트와 해당 사이트의 비밀번호가 주어진다. 이후 주어지는 사이트의 비밀번호를 찾아보자. 
+
+### 나의 풀이
+
+```python
+import sys
+import heapq
+input=sys.stdin.readline
+
+def func():
+    n,m=map(int,input().split())
+    password=dict()
+    for _ in range(n):
+        site,p=input().rstrip().split()
+        password[site]=p
+    
+    for _ in range(m):
+        site=input().rstrip()
+        print(password.get(site))
+
+func()
+```
+
+간단하게 딕셔너리를 사용하여 사이트와 비밀번호 정보를 넣고, 탐색 시간을 O(1)로 줄이면 해결할 수 있다. 
+
+### 시간복잡도
+
+n개의 사이트 정보를 딕셔너리에 삽입하는 데 O(n)만큼의 시간이 든다. 또한 m개의 사이트 비밀번호를 탐색하는 데에 O(m)만큼의 시간이 들어 전체 시간복잡도는 O(n+m)이다.
